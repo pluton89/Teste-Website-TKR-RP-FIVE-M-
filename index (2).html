@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝐓𝐊𝐑 Tokyo Revengers RP | Semi WL FIVEM Fr</title>
+    <style>
+        /* --- DESIGN SYSTÈME ULTRA-GAMING --- */
+        :root {
+            --bg-main: #060608;        /* Noir absolu */
+            --bg-card: #0d0d13;        /* Anthracite tech */
+            --bg-input: #12121a;       /* Fond input */
+            --primary: #ff3838;        /* Rouge néon agressif */
+            --primary-glow: rgba(255, 56, 56, 0.4);
+            --secondary: #ffb300;      /* Or brillant Toman */
+            --secondary-glow: rgba(255, 179, 0, 0.3);
+            --text-main: #ffffff;
+            --text-muted: #8e8e9a;
+            --discord: #5865F2;
+        }
+
+        /* --- STYLES GÉNÉRAUX & ANIMATIONS --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Effet de grain de fond futuriste */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 18, 26, 0.08) 50%, transparent 50%), linear-gradient(90deg, rgba(18, 18, 26, 0.08) 50%, transparent 50%);
+            background-size: 4px 4px;
+            z-index: 998;
+            pointer-events: none;
+        }
+
+        /* --- NAVIGATION NÉON --- */
+        header {
+            background: rgba(13, 13, 19, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 56, 56, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 18px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-style: italic;
+            transition: 0.3s;
+        }
+
+        .logo span {
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--secondary);
+            background: rgba(255, 179, 0, 0.05);
+            border-color: rgba(255, 179, 0, 0.2);
+            text-shadow: 0 0 10px var(--secondary-glow);
+        }
+
+        .nav-links a.active {
+            border-color: var(--secondary);
+            box-shadow: inset 0 0 10px rgba(255, 179, 0, 0.1);
+        }
+
+        /* --- STRUCTURES DES PAGES ONGLETS --- */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: scale(0.98) translateY(10px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        /* --- ACCUEIL CYBERPUNK --- */
+        .hero {
+            background: linear-gradient(rgba(6, 6, 8, 0.6), var(--bg-main)), 
+                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1600') no-repeat center/cover;
+            min-height: calc(90vh - 70px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 900;
+            text-shadow: 0 0 20px rgba(255, 179, 0, 0.4);
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 50px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: rgba(255, 56, 56, 0.1);
+            padding: 6px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 56, 56, 0.3);
+        }
+
+        .lore-container {
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .lore-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 6px;
+            border-left: 5px solid var(--secondary);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .lore-card:hover {
+            transform: translateX(5px);
+        }
+
+        .lore-card.red-side {
+            border-left-color: var(--primary);
+            background: linear-gradient(90deg, rgba(255,56,56,0.03) 0%, var(--bg-card) 100%);
+        }
+
+        .lore-card p {
+            font-size: 16px;
+            color: #d1d1d6;
+            text-align: justify;
+            position: relative;
+            z-index: 2;
+        }
+
+        .lore-card strong {
+            color: #fff;
+            border-bottom: 1px dashed var(--secondary);
+        }
+
+        /* --- BOUTONS PREMIUM --- */
+        .btn {
+            position: relative;
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            padding: 18px 45px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 14px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            box-shadow: 0 0 30px var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .btn-gold {
+            background: var(--secondary);
+            color: #000;
+            box-shadow: 0 0 20px var(--secondary-glow);
+        }
+
+        .btn-gold:hover {
+            background: #ffa000;
+            box-shadow: 0 0 35px var(--secondary);
+        }
+
+        /* --- COMPOSANTS DE FORMULAIRE FUTURISTES --- */
+        .form-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 60px auto;
+            background-color: var(--bg-card);
+            padding: 50px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.03);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+            position: relative;
+        }
+
+        /* Coin décoratif néon */
+        .form-container::after {
+            content: ''; position: absolute; top: -1px; right: -1px; width: 30px; height: 30px;
+            border-top: 3px solid var(--secondary); border-right: 3px solid var(--secondary); border-radius: 0 8px 0 0;
+        }
+        .support-page.form-container::after { border-color: var(--primary); }
+
+        .form-container h2 {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-container h2.support-title { color: var(--primary); }
+
+        .subtitle {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 14px;
+            display: block;
+            border-left: 2px solid #333;
+            padding-left: 10px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            color: var(--primary);
+            margin: 40px 0 25px 0;
+            letter-spacing: 2px;
+            font-weight: 800;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::after {
+            content: ''; flex-grow: 1; height: 1px; background: linear-gradient(90deg, rgba(255,56,56,0.3), transparent);
+        }
+
+        .form-group { margin-bottom: 30px; }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            color: #d1d1d6;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 16px;
+            background-color: var(--bg-input);
+            border: 1px solid #1c1c24;
+            color: #fff;
+            border-radius: 4px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 15px rgba(255, 179, 0, 0.15);
+            background-color: #15151f;
+        }
+
+        .support-page input:focus, .support-page textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(255, 56, 56, 0.15);
+        }
+
+        .contact-info {
+            margin-top: 45px;
+            padding: 25px;
+            background: var(--bg-main);
+            border-radius: 4px;
+            border: 1px solid #1c1c24;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .contact-info strong { color: var(--primary); }
+
+        /* --- SCREEN FLUIDE FLOU MODAL (POPUP) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(3, 3, 5, 0.95);
+            backdrop-filter: blur(8px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000;
+            opacity: 0; pointer-events: none;
+            transition: all 0.4s ease;
+        }
+
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+
+        .modal-box {
+            background-color: var(--bg-card);
+            padding: 50px;
+            border-radius: 8px;
+            border: 1px solid var(--secondary);
+            max-width: 550px;
+            width: 90%;
+            text-align: center;
+            transform: scale(0.85);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 50px rgba(255, 179, 0, 0.2);
+        }
+
+        .modal-overlay.active .modal-box { transform: scale(1); }
+
+        .modal-box h3 {
+            font-size: 28px;
+            color: #00ff87;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-box p {
+            color: #b5b5be;
+            margin-bottom: 35px;
+            font-size: 16px;
+        }
+
+        .btn-discord {
+            background-color: var(--discord);
+            box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
+        }
+
+        .btn-discord:hover {
+            background-color: #4552e6;
+            box-shadow: 0 0 35px var(--discord);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #44444a;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            border-top: 1px solid #0d0d13;
+            margin-top: auto;
+        }
+
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 768px) {
+            nav { flex-direction: column; gap: 20px; }
+            .hero h1 { font-size: 36px; }
+            .form-container { padding: 30px 20px; }
+            .form-container h2 { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">𝐓𝐊𝐑 <span>Tokyo Revengers RP</span></div>
+            <ul class="nav-links">
+                <li><a onclick="switchTab('accueil')" id="nav-accueil" class="active">Accueil</a></li>
+                <li><a onclick="switchTab('inscription')" id="nav-inscription">Inscription WL</a></li>
+                <li><a onclick="switchTab('support')" id="nav-support">Support</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="accueil" class="tab-content active">
+        <main class="hero">
+            <h1>𝐓𝐊𝐑 Tokyo Revengers RP</h1>
+            <h2>Semi WL | FIVEM FR</h2>
+            
+            <div class="lore-container">
+                <div class="lore-card">
+                    <p>Dans TKR RP, tu arrives dans une ville où les anciens gangs comme le <strong>Toman, Tenjiku, Valhalla, Moebius et Black Dragon</strong> ne sont plus que des légendes… ou des noms repris par une nouvelle génération prête à tout pour marquer l’histoire. Ces nouveaux membres n’ont pas connu les origines, mais portent les mêmes couleurs avec une mentalité différente : plus violente, plus ambitieuse, plus imprévisible. Toi, tu fais partie de cette nouvelle ére. Que tu rejoignes un gang existant ou que tu crées le tien, tu participes à écrire un nouveau chapitre inspiré de Tokyo Revengers. Mais dans ce monde, une seule règle compte : <strong>soit tu imposes ton nom… soit tu te fais effacer.</strong></p>
+                </div>
+                
+                <div class="lore-card red-side">
+                    <p>Cependant, tout ne tourne pas uniquement autour des gangs. La police tente de reprendre le contrôle d’une ville qui lui échappe de plus en plus, entre interventions musclées, enquêtes et corruption interne. En parallèle, la vie continue pour ceux qui refusent la violence : tu peux exercer différents métiers légaux comme mécanicien, ambulancier, commerçant ou chauffeur, et évoluer comme sur les autres serveurs RP. Mais même en restant dans le droit chemin, tu n’es jamais vraiment à l’abri… car les conflits de gangs peuvent éclater à tout moment autour de toi.</p>
+                </div>
+                
+                <div class="lore-card">
+                    <p>Dans cette ville, chaque choix a des conséquences. Alliances, trahisons, respect ou vengeance… tout se construit avec le temps. À toi de décider si tu veux faire régner le chaos, maintenir l’ordre… ou simplement survivre dans un monde où <strong>seule la détermination fait la différence.</strong></p>
+                </div>
+            </div>
+            
+            <button onclick="switchTab('inscription')" class="btn">Faire mon Inscription</button>
+        </main>
+    </div>
+
+    <div id="inscription" class="tab-content">
+        <main class="form-container">
+            <h2>Inscription &amp; Questionnaire</h2>
+            <span class="subtitle">Valide tes acquis théoriques RP pour débloquer l'accès à notre communauté.</span>
+            
+            <form id="wlForm">
+                <div class="section-title">Informations Citoyen</div>
+                
+                <div class="form-group">
+                    <label for="discord">Identifiant Pseudo Discord :</label>
+                    <input type="text" id="discord" required placeholder="Ex: mikey_toman">
+                </div>
+
+                <div class="form-group">
+                    <label for="age">Votre Âge réel :</label>
+                    <input type="number" id="age" min="12" max="99" required placeholder="Ex: 19">
+                </div>
+
+                <div class="form-group">
+                    <label for="temps_gta">Heures de jeu globales sur GTA RP / FiveM :</label>
+                    <input type="text" id="temps_gta" required placeholder="Ex: 450 heures (ou Débutant motivé)">
+                </div>
+
+                <div class="section-title">Théorie &amp; Mentalité Roleplay</div>
+
+                <div class="form-group">
+                    <label for="deja_rp">Détaillez vos expériences RP passées (Serveurs, rôles joués...) :</label>
+                    <textarea id="deja_rp" rows="4" required placeholder="Raconte-nous brièvement tes anciennes scènes..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="definition_fa">Selon vous, qu'implique la règle du "No Fear RP" lors d'un braquage ?</label>
+                    <textarea id="definition_fa" rows="4" required placeholder="Comment doit réagir logiquement ton personnage face à une arme ?"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-full btn-gold">Soumettre ma candidature</button>
+            </form>
+        </main>
+    </div>
+
+    <div id="support" class="tab-content support-page">
+        <main class="form-container support-page">
+            <h2 class="support-title">Support &amp; Assistance Staff</h2>
+            <span class="subtitle">Un problème en jeu ou avec ton compte ? Ouvre un ticket d'aide.</span>
+            
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="sup_discord">Identifiant Discord :</label>
+                    <input type="text" id="sup_discord" required placeholder="Ex: draken_tkr">
+                </div>
+                <div class="form-group">
+                    <label for="sup_email">Adresse E-mail de contact :</label>
+                    <input type="email" id="sup_email" required placeholder="Ex: tonadresse@mail.com">
+                </div>
+                <div class="form-group">
+                    <label for="sup_msg">Description complète de votre problème :</label>
+                    <textarea id="sup_msg" rows="6" required placeholder="Donne un maximum de détails (date, heure, explications)..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-full">Envoyer le ticket</button>
+            </form>
+
+            <div class="contact-info">
+                <p>📧 Support e-mail technique : <strong>contact@tkr-rp-tokyo.fr</strong></p>
+                <p>Prise en charge de votre dossier sous 24 heures maximum.</p>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-box">
+            <h3>Dossier Transmis !</h3>
+            <p>Tes réponses sont maintenant dans les mains du Staff TKR. Clique ci-dessous pour rejoindre notre serveur Discord officiel et finaliser ton entretien d'entrée.</p>
+            <a href="https://discord.gg/ton-lien-ici" target="_blank" class="btn btn-discord">Rejoindre le Discord TKR</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 TKR RP - Tokyo Revengers RP | Semi-WL FiveM Fr. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        function switchTab(tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            const links = document.querySelectorAll('.nav-links a');
+            links.forEach(link => link.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            document.getElementById('nav-' + tabId).classList.add('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.getElementById('wlForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('successModal').classList.add('active');
+        });
+
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
+        });
+    </script>
+
+</body>
+</html>
