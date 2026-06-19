@@ -79,16 +79,21 @@
                 </a> 
             </div> 
         </div> 
-
-       <div class="max-w-6xl w-full bg-black/40 border border-red-600/20 rounded-2xl p-4 lg:p-6 shadow-2xl shadow-red-900/10">
-    <div class="w-full rounded-xl overflow-hidden border border-white/5 relative bg-black">
-        <video controls autoplay loop muted playsinline class="w-full h-auto object-cover aspect-video"> 
-            <source src="fond-tkr.mp4.mp4" type="video/mp4"> 
-            Votre navigateur ne supporte pas la balise vidéo.
-        </video> 
-    </div>
+<div id="vignette" onclick="ouvrirVideo()" 
+     class="fixed bottom-8 right-8 w-16 h-16 bg-red-600 rounded-full flex items-center justify-center cursor-pointer shadow-lg shadow-red-900/50 hover:scale-110 transition-transform duration-300 z-50">
+    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
 </div>
 
+<div id="modalVideo" class="fixed inset-0 z-[100] hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="relative w-full max-w-4xl">
+        <button onclick="fermerVideo()" class="absolute -top-12 right-0 text-white text-xl font-bold hover:text-red-500">FERMER</button>
+        
+        <video id="maVideo" controls playsinline class="w-full h-auto rounded-lg shadow-2xl">
+            <source src="fond-tkr.mp4.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+    </div>
+</div>
     </main> 
 
     <footer class="relative z-10 w-full p-6 text-center text-xs text-gray-500 mt-auto"> 
